@@ -1,0 +1,7 @@
+dlib
+tensorflow-gpu
+tensorboard
+tensorflow-estimator
+tensorflow-serving-api
+tensorflow-serving-api-gpu
+imutils

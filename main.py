@@ -12,7 +12,6 @@ def Show_img(frame):
     cv2.imshow("Face Detection Comparison", combined)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    hello = ""
 
 
 if __name__ == "__main__":
@@ -28,7 +27,8 @@ if __name__ == "__main__":
 
             vframe.append(cv2.resize(fd.detectFaceDlibHog(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
             vframe.append(cv2.resize(fd.detectFaceOpenCVDnn(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
-            vframe.append(cv2.resize(fd.detectFaceOpenCVHaar(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
+            vframe.append(cv2.resize(fd.detectTinyFace(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
             vframe.append(cv2.resize(fd.detectFaceDlibMMOD(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
             Show_img(vframe)
 
+            vframe.clear()
