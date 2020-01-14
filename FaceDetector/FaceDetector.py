@@ -53,19 +53,30 @@ class FaceDetector:
     # ============================== < TinyFace Helpers > =======================================
 
     def _overlay_bounding_boxes(self, raw_img, refined_bboxes, lw):
+
         # Overlay bounding boxes on an image with the color based on the confidence.
         for r in refined_bboxes:
             _score = expit(r[4])
             cm_idx = int(np.ceil(_score * 255))
             rect_color = [int(np.ceil(x * 255)) for x in util.cm_data[cm_idx]]  # parula
             _lw = lw
+
             if lw == 0:  # line width of each bounding box is adaptively determined.
                 bw, bh = r[2] - r[0] + 1, r[3] - r[0] + 1
                 _lw = 1 if min(bw, bh) <= 20 else max(2, min(3, min(bh / 20, bw / 20)))
                 _lw = int(np.ceil(_lw * _score))
+                del bw
+                del bh
 
             _r = [int(x) for x in r[:4]]
             cv2.rectangle(raw_img, (_r[0], _r[1]), (_r[2], _r[3]), rect_color, _lw)
+
+            # Cleanning RAM
+            del _score
+            del cm_idx
+            del rect_color
+            del _lw
+            del _r
 
     def _detectTinyFace(self, frame):
         # placeholder of input images. Currently batch size of one is supported.
@@ -226,6 +237,7 @@ class FaceDetector:
         frameDlibHog = frame.copy()
         frameHeight = frameDlibHog.shape[0]
         frameWidth = frameDlibHog.shape[1]
+
         if not inWidth:
             inWidth = int((frameWidth / frameHeight) * inHeight)
 
@@ -240,7 +252,7 @@ class FaceDetector:
         t2 = time.time()
         total_times = round(t2-t1, 2)
 
-        print(frameWidth, frameHeight, inWidth, inHeight)
+        # print(frameWidth, frameHeight, inWidth, inHeight)
         bboxes = []
         cv2.putText(frameDlibHog, "HoG : " + str(total_times) + " s", (10, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
@@ -253,34 +265,43 @@ class FaceDetector:
         return frameDlibHog
 
     def detectFaceDlibMMOD(self, frame, inHeight=300, inWidth=0):
-
         frameDlibMMOD = frame.copy()
         frameHeight = frameDlibMMOD.shape[0]
         frameWidth = frameDlibMMOD.shape[1]
-        if not inWidth:
-            inWidth = int((frameWidth / frameHeight) * inHeight)
 
-        scaleHeight = frameHeight / inHeight
-        scaleWidth = frameWidth / inWidth
+        if not inWidth:
+            inWidth = int((frameWidth/frameHeight) * inHeight)
+
         frameDlibMMODSmall = cv2.resize(frameDlibMMOD, (inWidth, inHeight))
         frameDlibMMODSmall = cv2.cvtColor(frameDlibMMODSmall, cv2.COLOR_BGR2RGB)
 
         t1 = time.time()
         faceRects = self._dnnFaceDetector(frameDlibMMODSmall, 0)
-        t2 = time.time()
-        total_times = round(t2-t1, 2)
+        total_times = round((time.time() - t1), 2)
+        del t1
 
-        print(frameWidth, frameHeight, inWidth, inHeight)
-        bboxes = []
+        # print(frameWidth, frameHeight, inWidth, inHeight)
+        # bboxes = []
 
         cv2.putText(frameDlibMMOD, "MMOD : " + str(total_times) + " s", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
 
         for faceRect in faceRects:
-            cvRect = [int(faceRect.rect.left() * scaleWidth), int(faceRect.rect.top() * scaleHeight),
-                      int(faceRect.rect.right() * scaleWidth), int(faceRect.rect.bottom() * scaleHeight)]
-            bboxes.append(cvRect)
+            cvRect = [int(faceRect.rect.left() * (frameWidth/inWidth)),
+                      int(faceRect.rect.top() * (frameHeight/inHeight)),
+                      int(faceRect.rect.right() * (frameWidth / inWidth)),
+                      int(faceRect.rect.bottom() * (frameHeight / inHeight))]
+
+            # Faces in bboxes
+            # bboxes.append(cvRect)
             cv2.rectangle(frameDlibMMOD, (cvRect[0], cvRect[1]), (cvRect[2], cvRect[3]), (0, 255, 0),
                           int(round(frameHeight / 150)), 4)
+        # Cleanning RAM
+        del frameWidth
+        del frameHeight
+        del inWidth
+        del inHeight
+        del faceRects
+
         return frameDlibMMOD
 
     def detectFaceOpenCVDnn(self, frame):
