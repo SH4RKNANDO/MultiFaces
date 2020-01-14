@@ -25,7 +25,7 @@ Face Detector used :
 Do not use :
     
     Haarcascade from haarcascade because a lot of false positives
-    MMOD from dlib because a lot of false positives
+    MMOD from dlib because it's very slow
 
 How to Implement ?
 
