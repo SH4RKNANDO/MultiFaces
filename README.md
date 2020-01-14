@@ -58,7 +58,7 @@ Face Detector used :
 
 ## TINY RESULT :
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_2.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_1.jpg "Logo Title Text 1")
 
 
 ![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_26.jpg "Logo Title Text 1")
@@ -71,8 +71,6 @@ Face Detector used :
 
 
 ## TINY WAS NOT PERFECT !
-
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_3.jpg "Logo Title Text 1")
 
 
 
