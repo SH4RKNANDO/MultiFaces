@@ -61,6 +61,10 @@ How to Implement ?
                 Show_img(vframe)
                 vframe.clear()
 
+TODO:
+
+    Optimizing TinyFace
+
 Thanks
 
     PyImageSearch : https://www.pyimagesearch.com/

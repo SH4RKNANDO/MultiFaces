@@ -172,7 +172,7 @@ class FaceDetector:
             refined_bboxes = bboxes[refind_idx]
 
             if len(refined_bboxes) > 0:
-                cv2.putText(raw_img, "TinyFaces :" + str(len(refined_bboxes)) + "Face(s)", (10, 50),
+                cv2.putText(raw_img, "TinyFaces : " + str(round(time.time() - start, 2)) + " s", (10, 50),
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3, cv2.LINE_AA)
                 # print("Face Detected : " + str(len(refind_idx)))
                 self._overlay_bounding_boxes(raw_img, refined_bboxes, self._lw)
@@ -180,8 +180,8 @@ class FaceDetector:
                 # save image with bounding boxes
                 raw_img = cv2.cvtColor(raw_img, cv2.COLOR_RGB2BGR)
             else:
-                cv2.putText(raw_img, "TinyFaces : No face", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1,
-                            (0, 0, 255), 3, cv2.LINE_AA)
+                cv2.putText(raw_img, "TinyFaces : No face", (10, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                            1, (0, 0, 255), 3, cv2.LINE_AA)
 
             return raw_img
 
@@ -200,10 +200,14 @@ class FaceDetector:
         frameOpenCVHaarSmall = cv2.resize(frameOpenCVHaar, (inWidth, inHeight))
         frameGray = cv2.cvtColor(frameOpenCVHaarSmall, cv2.COLOR_BGR2GRAY)
 
+        t1 = time.time()
         faces = self._faceCascade.detectMultiScale(frameGray)
+        t2 = time.time()
+        total_times = round(t2 - t1, 2)
+
         bboxes = []
-        cv2.putText(frameOpenCVHaar, "OpenCV HaarCascade", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3,
-                    cv2.LINE_AA)
+        cv2.putText(frameOpenCVHaar, "OpenCV HaarCascade : " + str(total_times) + " s", (10, 50),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
 
         for (x, y, w, h) in faces:
             x1 = x
@@ -229,12 +233,17 @@ class FaceDetector:
         scaleWidth = frameWidth / inWidth
 
         frameDlibHogSmall = cv2.resize(frameDlibHog, (inWidth, inHeight))
-
         frameDlibHogSmall = cv2.cvtColor(frameDlibHogSmall, cv2.COLOR_BGR2RGB)
+
+        t1 = time.time()
         faceRects = self._hogFaceDetector(frameDlibHogSmall, 0)
+        t2 = time.time()
+        total_times = round(t2-t1, 2)
+
         print(frameWidth, frameHeight, inWidth, inHeight)
         bboxes = []
-        cv2.putText(frameDlibHog, "OpenCV HoG", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
+        cv2.putText(frameDlibHog, "HoG : " + str(total_times) + " s", (10, 50),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
         for faceRect in faceRects:
             cvRect = [int(faceRect.left() * scaleWidth), int(faceRect.top() * scaleHeight),
                       int(faceRect.right() * scaleWidth), int(faceRect.bottom() * scaleHeight)]
@@ -253,16 +262,18 @@ class FaceDetector:
 
         scaleHeight = frameHeight / inHeight
         scaleWidth = frameWidth / inWidth
-
         frameDlibMMODSmall = cv2.resize(frameDlibMMOD, (inWidth, inHeight))
-
         frameDlibMMODSmall = cv2.cvtColor(frameDlibMMODSmall, cv2.COLOR_BGR2RGB)
+
+        t1 = time.time()
         faceRects = self._dnnFaceDetector(frameDlibMMODSmall, 0)
+        t2 = time.time()
+        total_times = round(t2-t1, 2)
 
         print(frameWidth, frameHeight, inWidth, inHeight)
         bboxes = []
 
-        cv2.putText(frameDlibMMOD, "OpenCV MMOD", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
+        cv2.putText(frameDlibMMOD, "MMOD : " + str(total_times) + " s", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
 
         for faceRect in faceRects:
             cvRect = [int(faceRect.rect.left() * scaleWidth), int(faceRect.rect.top() * scaleHeight),
@@ -278,10 +289,15 @@ class FaceDetector:
         frameWidth = frameOpencvDnn.shape[1]
         blob = cv2.dnn.blobFromImage(frameOpencvDnn, 1.0, (300, 300), [104, 117, 123], False, False)
 
+        t1 = time.time()
         self._net.setInput(blob)
         detections = self._net.forward()
+        t2 = time.time()
+        total_times = round(t2-t1, 2)
+
         bboxes = []
-        cv2.putText(frameOpencvDnn, "OpenCV DNN", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3, cv2.LINE_AA)
+        cv2.putText(frameOpencvDnn, "DNN : " + str(total_times) + " s", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8,
+                    (0, 0, 255), 3, cv2.LINE_AA)
 
         for i in range(detections.shape[2]):
             confidence = detections[0, 0, i, 2]
