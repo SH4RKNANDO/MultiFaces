@@ -18,12 +18,16 @@ if __name__ == "__main__":
 
     fd = FaceDetector()
     imgPath = list(paths.list_images("IMAGE_TO_DETECT"))
+    cpt = 0
 
     if len(imgPath) > 1:
 
         for img in imgPath:
             img_read = cv2.imread(img)
-            vframe=[]
+            vframe = []
+
+            cpt += 1
+            print("Processing " + str(cpt) + "/" + str(len(imgPath)))
 
             vframe.append(cv2.resize(fd.detectFaceDlibHog(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
             vframe.append(cv2.resize(fd.detectFaceOpenCVDnn(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
