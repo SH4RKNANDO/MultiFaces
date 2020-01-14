@@ -75,17 +75,75 @@ Face Detector used :
 ![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_3.jpg "Logo Title Text 1")
 
 
-### TODO:
+
+## Requirements
+
+Python library 
+    
+    dlib
+    keras
+    tensorflow-gpu or tensorflow
+    opencv
+    imutils
+    numpy
+    pickle
+    scipy
+
+### Nvidia driver
+
+    +-----------------------------------------------------------------------------+
+    | NVIDIA-SMI 440.44       Driver Version: 440.44       CUDA Version: 10.2     |
+    |-------------------------------+----------------------+----------------------+
+    | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+    | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+    |===============================+======================+======================|
+    |   0  GeForce GTX 960M    Off  | 00000000:01:00.0 Off |                  N/A |
+    | N/A   43C    P0    N/A /  N/A |      0MiB /  4046MiB |      0%      Default |
+    +-------------------------------+----------------------+----------------------+
+                                                                                   
+    +-----------------------------------------------------------------------------+
+    | Processes:                                                       GPU Memory |
+    |  GPU       PID   Type   Process name                             Usage      |
+    |=============================================================================|
+    |  No running processes found                                                 |
+    +-----------------------------------------------------------------------------+
+
+### Nvidia cuda
+
+    nvcc: NVIDIA (R) Cuda compiler driver
+    Copyright (c) 2005-2019 NVIDIA Corporation
+    Built on Wed_Oct_23_19:24:38_PDT_2019
+    Cuda compilation tools, release 10.2, V10.2.89
+
+### Nvidia cuda cudnn
+
+download : https://developer.nvidia.com/cudnn
+    
+Archlinux :
+
+    pacman -S cuda cudnn
+
+### Tutorial
+
+PyImageSearch with ubuntu 18.04
+
+https://www.pyimagesearch.com/2019/01/30/ubuntu-18-04-install-tensorflow-and-keras-for-deep-learning/
+
+
+## TODO:
 
     Optimizing TinyFace
 
 
-### Developper Info
+## Developper Info
 
     Author : Jordan Bertieaux
     Version: 1.0
-
-###Thanks
+    OS : archlinux
+    Kernel : 5.4.11-arch1-1 #1 SMP PREEMPT Sun, 12 Jan 2020 12:15:27 +0000 x86_64 GNU/Linux
+    Python version 3
+   
+## Thanks
 
     PyImageSearch : https://www.pyimagesearch.com/
     Cyndonia : https://github.com/cydonia999/Tiny_Faces_in_Tensorflow
