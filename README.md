@@ -66,19 +66,19 @@ RESULT:
 ![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_2.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_10.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_3.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_12.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_6.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_21.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_26.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_23.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_28.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_24.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_29.jpg "Logo Title Text 1")
 
 
 TODO:
