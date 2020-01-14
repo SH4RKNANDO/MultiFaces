@@ -1,11 +1,6 @@
 # MultiFaces Comparator
 
-Infos
-
-    Author : Jordan Bertieaux
-    Version: 1.0
-
-
+## Face detector
 This project permit the measure of perform Face Detector 
 
 Face Detector used :
@@ -22,12 +17,12 @@ Face Detector used :
     - TinyFace (Custom Method)
         - Model : weight converted (hr_res101.mat)
 
-Do not use :
+### Face detector do not use :
     
     Haarcascade from haarcascade because a lot of false positives
     MMOD from dlib because it's very slow
 
-How to Implement ?
+### How to use FaceDetector class ?
 
     if __name__ == "__main__":
     
@@ -61,15 +56,9 @@ How to Implement ?
                 Show_img(vframe)
                 vframe.clear()
 
-RESULT:
+## TINY RESULT :
 
 ![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_2.jpg "Logo Title Text 1")
-
-
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_3.jpg "Logo Title Text 1")
-
-
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_6.jpg "Logo Title Text 1")
 
 
 ![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_26.jpg "Logo Title Text 1")
@@ -81,12 +70,22 @@ RESULT:
 ![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_29.jpg "Logo Title Text 1")
 
 
-TODO:
+## TINY WAS NOT PERFECT !
+
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_6.jpg "Logo Title Text 1")
+
+
+### TODO:
 
     Optimizing TinyFace
 
-Thanks
+
+### Developper Info
+
+    Author : Jordan Bertieaux
+    Version: 1.0
+
+###Thanks
 
     PyImageSearch : https://www.pyimagesearch.com/
     Cyndonia : https://github.com/cydonia999/Tiny_Faces_in_Tensorflow
-
