@@ -12,6 +12,10 @@ def Show_img(frame):
     combined = np.vstack([top, bottom])
     cv2.imshow("Face Detection Comparison", combined)
     cv2.waitKey(0)
+    # Cleanning RAM
+    del top
+    del bottom
+    del combined
     cv2.destroyAllWindows()
 
 
@@ -21,6 +25,11 @@ def Write_Img(frame, cpt):
     bottom = np.hstack([frame[2], frame[3]])
     combined = np.vstack([top, bottom])
     cv2.imwrite("IMG_RESULT/Result_" + str(cpt) + ".jpg", combined)
+    # Cleanning RAM
+    del top
+    del bottom
+    del combined
+    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
@@ -42,6 +51,9 @@ if __name__ == "__main__":
             vframe.append(cv2.resize(fd.detectFaceOpenCVDnn(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
             vframe.append(cv2.resize(fd.detectTinyFace(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
             vframe.append(cv2.resize(fd.detectFaceDlibMMOD(img_read), (640, 480), interpolation=cv2.INTER_LINEAR))
-            Show_img(vframe)
+            Write_Img(vframe, cpt)
 
-            vframe.clear()
+            del vframe
+    del fd
+    del imgPath
+    del cpt
