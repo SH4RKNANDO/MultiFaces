@@ -61,13 +61,13 @@ Face Detector used :
 ![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_1.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_26.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_19.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_28.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_21.jpg "Logo Title Text 1")
 
 
-![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_29.jpg "Logo Title Text 1")
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_22.jpg "Logo Title Text 1")
 
 
 ## TINY WAS NOT PERFECT !
