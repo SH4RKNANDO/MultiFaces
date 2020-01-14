@@ -2,6 +2,7 @@ from FaceDetector.FaceDetector import FaceDetector
 from imutils import paths
 import numpy as np
 import cv2
+import tensorflow as tf
 
 
 # Show Divised Image
@@ -12,6 +13,14 @@ def Show_img(frame):
     cv2.imshow("Face Detection Comparison", combined)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+
+# Show Divised Image
+def Write_Img(frame, cpt):
+    top = np.hstack([frame[0], frame[1]])
+    bottom = np.hstack([frame[2], frame[3]])
+    combined = np.vstack([top, bottom])
+    cv2.imwrite("IMG_RESULT/Result_" + str(cpt) + ".jpg", combined)
 
 
 if __name__ == "__main__":
