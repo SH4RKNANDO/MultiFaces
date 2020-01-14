@@ -121,6 +121,21 @@ Archlinux :
 
     pacman -S cuda cudnn
 
+## Optional Requirements
+
+### intel mkl (math kernel library) 
+
+source : https://software.intel.com/en-us/mkl
+    
+    yay -S intel-mkl
+    yay -S intel-dnn
+    yay -S tensorflow-cuda-mkl
+
+
+### MXNET Neural Network
+    
+    yay -S mxnet-cuda-mkl-git
+
 ### Tutorial
 
 PyImageSearch with ubuntu 18.04
