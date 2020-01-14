@@ -1,7 +1,8 @@
 dlib
+keras
 tensorflow-gpu
-tensorboard
-tensorflow-estimator
-tensorflow-serving-api
-tensorflow-serving-api-gpu
+opencv
 imutils
+numpy
+pickle
+scipy
