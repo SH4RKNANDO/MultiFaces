@@ -47,7 +47,7 @@ class FaceDetector:
         self._MAX_INPUT_DIM = 5000.0
         self._prob_thresh = float(0.5)
         self._nms_tresh = float(0.1)
-        self._lw = int(1)
+        self._lw = int(3)
         self._model = tiny_face_model.Model('Data/Model/hr_res101.weight')
 
     # ============================== < TinyFace Helpers > =======================================

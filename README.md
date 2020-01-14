@@ -61,6 +61,20 @@ How to Implement ?
                 Show_img(vframe)
                 vframe.clear()
 
+RESULT:
+
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_2.jpg "Logo Title Text 1")
+
+
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_51.jpg "Logo Title Text 1")
+
+
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_60.jpg "Logo Title Text 1")
+
+
+![alt text](https://github.com/SH4RKNANDO/MultiFaces/blob/master/IMG_RESULT/Result_62.jpg "Logo Title Text 1")
+
+
 TODO:
 
     Optimizing TinyFace
