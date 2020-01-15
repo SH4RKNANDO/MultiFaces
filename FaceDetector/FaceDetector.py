@@ -79,8 +79,6 @@ class FaceDetector:
             del _r
 
     def _detectTinyFace(self, frame):
-        # placeholder of input images. Currently batch size of one is supported.
-        # n, h, w, c
         x = tf.compat.v1.placeholder(tf.float32, [1, None, None, 3])
 
         # Create the tiny face model which weights are loaded from a pretrained model.
@@ -264,8 +262,7 @@ class FaceDetector:
                           int(round(frameHeight / 150)), 4)
         return frameDlibHog
 
-    def detectFaceDlibMMOD(self, frame, inHeight=300, inWidth=0):
-        frameDlibMMOD = frame.copy()
+    def detectFaceDlibMMOD(self, frameDlibMMOD, inHeight=300, inWidth=0):
         frameHeight = frameDlibMMOD.shape[0]
         frameWidth = frameDlibMMOD.shape[1]
 
@@ -288,14 +285,14 @@ class FaceDetector:
         for faceRect in faceRects:
             cvRect = [int(faceRect.rect.left() * (frameWidth/inWidth)),
                       int(faceRect.rect.top() * (frameHeight/inHeight)),
-                      int(faceRect.rect.right() * (frameWidth / inWidth)),
-                      int(faceRect.rect.bottom() * (frameHeight / inHeight))]
+                      int(faceRect.rect.right() * (frameWidth/inWidth)),
+                      int(faceRect.rect.bottom() * (frameHeight/inHeight))]
 
             # Faces in bboxes
             # bboxes.append(cvRect)
             cv2.rectangle(frameDlibMMOD, (cvRect[0], cvRect[1]), (cvRect[2], cvRect[3]), (0, 255, 0),
                           int(round(frameHeight / 150)), 4)
-        # Cleanning RAM
+        # cleanning ram
         del frameWidth
         del frameHeight
         del inWidth
