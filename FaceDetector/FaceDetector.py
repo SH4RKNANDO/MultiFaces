@@ -10,6 +10,11 @@ import cv2
 import dlib
 import numpy as np
 import tensorflow as tf
+import keras_vggface
+from PIL import Image
+from mtcnn.mtcnn import MTCNN
+from matplotlib import pyplot
+
 from scipy.special import expit
 
 from FaceDetector import tiny_face_model
@@ -194,6 +199,30 @@ class FaceDetector:
 
             return raw_img
 
+    # ============================== < VGGFACE2 Helpers > =======================================
+
+    # extract a single face from a given photograph
+    def _extract_vggface(self, filename, required_size=(20, 20)):
+        # load image from file
+        pixels = pyplot.imread(filename)
+        # create the detector, using default weights
+        detector = MTCNN()
+        # detect faces in the image
+        results = detector.detect_faces(pixels)
+        if len(results) > 0:
+            # extract the bounding box from the first face
+            x1, y1, width, height = results[0]['box']
+            x2, y2 = x1 + width, y1 + height
+            # extract the face
+            face = pixels[y1:y2, x1:x2]
+            # resize pixels to the model size
+            image = Image.fromarray(face)
+            image = image.resize(required_size)
+            face_array = np.asarray(image)
+            return face_array
+        else:
+            return None
+
     # ============================== < FaceDetector  > =======================================
 
     def detectFaceOpenCVHaar(self, frame, inHeight=300, inWidth=0):
@@ -332,3 +361,13 @@ class FaceDetector:
         with tf.Graph().as_default():
             temp = self._detectTinyFace(frame)
         return temp
+
+    def detectVGGFace(self, imgPath):
+        # load the photo and extract the face
+        pixels = self._extract_vggface(imgPath)
+
+        if pixels is not None:
+            # plot the extracted face
+            pyplot.imshow(pixels)
+            # show the plot
+            pyplot.show()
